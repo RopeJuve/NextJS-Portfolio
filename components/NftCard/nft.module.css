@@ -1,0 +1,23 @@
+.cardContainer{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 0.5px solid white;
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+}
+
+.cardContainer img {
+    width: 60%;
+    height: 60%;
+}
+
+.infoNft{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

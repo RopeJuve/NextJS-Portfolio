@@ -1,14 +1,28 @@
 import type { NextPage} from "next";
+import styles from './dashboard.module.css'
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 declare var window: any;
+import {nftDAta} from '../../data/data'
+import NftCard from "../../components/NftCard/NftCard";
+import Pagination from '../../components/Pagination/Pagination'
 
-const Dashboard: NextPage=  () => {
+
+
+
+const Dashboard =  () => {
  const router = useRouter();
  const account = router.query.account;
+ console.log(account)
   return (
-    <div>Dasboard
+    <div className={styles.mainContainer}>
+      <h1>Dasboard</h1>
       <p>Account:{account}</p>
+      <div className={styles.nftContainer}>{
+        nftDAta.map( nft => (
+          <NftCard key={nft.id} nft={nft}/>
+          ))
+        }</div>
+        <Pagination />
     </div>
   )
 };
@@ -33,12 +47,13 @@ const Dashboard: NextPage=  () => {
 // }
 // }
 
-// export const getStaticProps = async (context: any) => {
-//   const account = context.params.account;
-
+// export const getStaticProps = async ({query: {page:number = 1}}) => {
+ 
+// const nftToShow = nftDAta.slice(number-1 ,number * 10);
 //   return {
 //     props: {
-//       account: account
+//       nftData:nftToShow,
+//       page: number 
 //     }
 //   }
 // }
