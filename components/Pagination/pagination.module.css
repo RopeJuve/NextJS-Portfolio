@@ -1,20 +1,38 @@
-.paginationContainer{
-    display: flex;
-    margin-bottom: 10px;
+.paginationContainer {
+  display: flex;
+  margin-bottom: 10px;
 }
 
-.buttonContainer button{
-    background-color: transparent;
-    color: white;
-    border: none;
+.buttonContainer button {
+  background-color: transparent;
+  color: white;
+  border: none;
 }
 
-.buttonContainer{
-    display: flex;
-    align-items: center;
-    width: 30px;
-    height: 30px;
-    border: 0.5px solid white;
-    border-radius: 50%;
-    margin: 5px;
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border: 0.5px solid white;
+  border-radius: 50%;
+  margin: 5px;
+}
+
+.buttonContainer:hover {
+  color: white;
+  cursor: pointer;
+  background-color: rgba(38, 24, 77, 0.9);
+}
+
+.buttonContainer.active {
+    color: gray;
+    background-color: rgba(38, 24, 77, 0.8);
+    border: 1px solid gray;
+}
+
+.buttonContainer button:hover {
+  color: white;
+  cursor: pointer;
 }

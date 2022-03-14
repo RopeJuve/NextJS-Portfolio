@@ -1,45 +1,43 @@
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
-declare var window: any;
 import styles from "../styles/Home.module.css";
-import Link from "next/link";
-
+import { injected } from '../components/Connectors/Connectors'
+import { useWeb3React } from "@web3-react/core";
+import { useRouter } from "next/router";
+ 
 
 
 
 const ConnectToWollet: NextPage = () => {
-  const [error, setError] = useState("");
-  const [accounts, setAccounts] = useState([]);
+
+ 
+
+  const router = useRouter();
+ 
+  const context = useWeb3React();
+
   
   const connectButtonHandler = async () => {
-    if (window.ethereum) {
-      const accounts = await window.ethereum.request({
-        method: "eth_requestAccounts",
-      });
-      setAccounts(accounts);
-      console.log(accounts[0]);
-    } else {
-      setError("Metamask not instaled");
+    try {
+      await context.activate(injected)
+        const accountMetamask = context.account;
+        if(!accountMetamask) return;
+        console.log(accountMetamask);
+        router.push(`/dashboard/${accountMetamask}`)
+    } catch (error) {
+      console.log(error)
     }
   };
 
-  useEffect(() => {
-   connectButtonHandler();
-  },[])
+
+
 
   return (
     <div className={styles.container}>
-      <Link
-        href={{
-          pathname: `/dashboard/${accounts[0]}`,
-        }}
-      >
+     
         <button className={styles.button} onClick={connectButtonHandler}>
           Connect whit Wollet
         </button>
-      </Link>
-
-      <p>{error}</p>
     </div>
   );
 };
