@@ -4,15 +4,18 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 0.5px solid white;
+    background-color: rgb(23,45,104);
+   
+    border: 0.5px solid rgb(42,132,148);
     border-radius: 10px;
     height: 100%;
     width: 100%;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .cardContainer img {
     width: 60%;
-    height: 60%;
+    height: 70%;
 }
 
 .infoNft{

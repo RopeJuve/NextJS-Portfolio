@@ -10,7 +10,6 @@ export default function NftCard({ nft }: Props) {
     <div className={styles.cardContainer}>
       <img src={nft.imageUrl} />
       <div className={styles.infoNft}>
-        <p>Name: {nft.name}</p>
         <p>ID: {nft.id}</p>
       </div>
     </div>
