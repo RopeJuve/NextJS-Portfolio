@@ -1,42 +1,13 @@
 import styles from "./dashboard.module.css";
 import { useRouter } from "next/router";
-
 import { nftDAta } from "../../data/data";
 import NftCard from "../../components/NftCard/NftCard";
 import Pagination from "../../components/Pagination/Pagination";
-import { useEffect, useState } from "react";
-import Web3 from "web3";
-import { abi } from "../../data/abi";
-
-var web3 = new Web3(
-  Web3.givenProvider || "ws://some.local-or-remote.node:8546"
-);
+import { useState } from "react";
 
 const Dashboard = () => {
   const router = useRouter();
   const account = router.query.account;
-  const [balance, setBalance] = useState("");
-
-  useEffect(() => {
-    async () => {
-      try {
-        web3.eth.getBalance(account! as string).then((balance) => {
-          console.log(web3.utils.fromWei(balance, "ether"));
-          setBalance(web3.utils.fromWei(balance, "ether"));
-        });
-
-        let contract = new web3.eth.Contract(
-          abi,
-          "0xc17b109E146934D36c33E55FADE9cBDa791b0366"
-        );
-        const balance = contract.methods.balanceOf(account).call();
-        console.log(web3.utils.fromWei(balance, "ether"));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  }, []);
-
   const nftsLimit = 10;
   const pageLimit = 5;
   const numberPages = Math.ceil(nftDAta.length / nftsLimit);
